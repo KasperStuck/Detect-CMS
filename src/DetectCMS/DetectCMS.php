@@ -33,8 +33,11 @@ class DetectCMS {
 	
 	public $result = FALSE;
 
-	function __construct($url) {
-		$this->url = $url;
+	function __construct($url, $systems = []) {
+		if (! empty($systems)) {
+		    $this->systems = $systems;
+        }
+	    $this->url = $url;
 		list($this->home_headers, $this->home_html) = $this->fetchBodyAndHeaders();
 		$this->result = $this->check($url);
 	}
